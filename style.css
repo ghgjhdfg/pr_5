@@ -1,0 +1,346 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 32px;
+    padding: 32px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* Карточка блюда */
+.card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 32px;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.card-inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.dish-image-container {
+    position: relative;
+    background: #f8f9fa;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.dish-image {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: none;
+}
+
+.dish-image.loaded {
+    display: block;
+}
+
+.image-placeholder {
+    font-size: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.dish-image.loaded + .image-placeholder,
+.dish-image.loaded ~ .image-placeholder {
+    display: none;
+}
+
+.dish-info {
+    padding: 24px;
+    text-align: center;
+}
+
+.dish-info h2 {
+    font-size: 1.8rem;
+    color: #2d3748;
+    margin-bottom: 12px;
+}
+
+.dish-description {
+    color: #718096;
+    line-height: 1.5;
+}
+
+/* Кнопка повезёт */
+.lucky-btn {
+    width: 100%;
+    padding: 16px 24px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+}
+
+.lucky-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
+}
+
+.lucky-btn:active {
+    transform: scale(0.98);
+}
+
+.btn-icon {
+    font-size: 1.3rem;
+}
+
+/* Секция настройки */
+.customize-section {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 24px;
+}
+
+details {
+    cursor: pointer;
+}
+
+summary {
+    font-weight: 600;
+    color: #4a5568;
+    padding: 8px 0;
+    user-select: none;
+}
+
+summary:hover {
+    color: #667eea;
+}
+
+.customize-panel {
+    margin-top: 16px;
+    padding: 16px;
+    background: #f7fafc;
+    border-radius: 16px;
+    cursor: default;
+}
+
+.info-text {
+    font-size: 0.85rem;
+    color: #718096;
+    margin-bottom: 16px;
+}
+
+.dishes-editor {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+}
+
+.dish-editor-item {
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.dish-editor-item input,
+.dish-editor-item textarea {
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.dish-editor-item textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.dish-editor-item input:focus,
+.dish-editor-item textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.remove-dish-btn {
+    background: #fed7d7;
+    color: #c53030;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.remove-dish-btn:hover {
+    background: #feb2b2;
+}
+
+.editor-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.secondary-btn,
+.primary-btn,
+.danger-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 40px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.secondary-btn {
+    background: #e2e8f0;
+    color: #4a5568;
+}
+
+.secondary-btn:hover {
+    background: #cbd5e0;
+}
+
+.primary-btn {
+    background: #667eea;
+    color: white;
+}
+
+.primary-btn:hover {
+    background: #5a67d8;
+}
+
+.danger-btn {
+    background: #fff5f5;
+    color: #e53e3e;
+    border: 1px solid #fed7d7;
+}
+
+.danger-btn:hover {
+    background: #fed7d7;
+}
+
+/* Toast уведомление */
+.toast {
+    visibility: hidden;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2d3748;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 1000;
+}
+
+.toast.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+footer {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.footer-text {
+    font-size: 0.8rem;
+    color: #a0aec0;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .dish-info h2 {
+        font-size: 1.3rem;
+    }
+    
+    .dish-image-container,
+    .dish-image,
+    .image-placeholder {
+        height: 200px;
+    }
+    
+    .image-placeholder {
+        font-size: 60px;
+    }
+}
+
+/* Анимация загрузки */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.loading .dish-info h2 {
+    animation: pulse 1s infinite;
+}
